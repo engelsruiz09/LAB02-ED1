@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\julio\\Desktop\\LAB02-ED1\\LAB02-ED1-G.csproj": {}
+    "C:\\Users\\julio\\Desktop\\LAB02-ED1\\Es_Arboles\\Es_Arboles.csproj": {}
   },
   "projects": {
-    "C:\\Users\\julio\\Desktop\\LAB02-ED1\\LAB02-ED1-G.csproj": {
+    "C:\\Users\\julio\\Desktop\\LAB02-ED1\\Es_Arboles\\Es_Arboles.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julio\\Desktop\\LAB02-ED1\\LAB02-ED1-G.csproj",
-        "projectName": "LAB02-ED1-G",
-        "projectPath": "C:\\Users\\julio\\Desktop\\LAB02-ED1\\LAB02-ED1-G.csproj",
+        "projectUniqueName": "C:\\Users\\julio\\Desktop\\LAB02-ED1\\Es_Arboles\\Es_Arboles.csproj",
+        "projectName": "Es_Arboles",
+        "projectPath": "C:\\Users\\julio\\Desktop\\LAB02-ED1\\Es_Arboles\\Es_Arboles.csproj",
         "packagesPath": "C:\\Users\\julio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julio\\Desktop\\LAB02-ED1\\obj\\",
+        "outputPath": "C:\\Users\\julio\\Desktop\\LAB02-ED1\\Es_Arboles\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -56,9 +56,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

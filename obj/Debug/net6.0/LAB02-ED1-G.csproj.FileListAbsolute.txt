@@ -1,0 +1,8 @@
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.csproj.AssemblyReference.cache
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.AssemblyInfoInputs.cache
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.AssemblyInfo.cs
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.csproj.CoreCompileInputs.cache
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.RazorAssemblyInfo.cache
+C:\Users\julio\Desktop\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.RazorAssemblyInfo.cs
