@@ -1,148 +1,340 @@
-﻿namespace Es_Arboles
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Es_Arboles
 {
-    public class AVL<T, Y> where T : IComparable
+    public class AVL <T> : NoLinear<T> where T : IComparable<T>
     {
-        public class Node
-        {
-            public Node Left;
-            public Node Right;
-            public T Key;
-            public Y Data;
-            public Node(T Key, Y Data) { //definimos un constructor para una clase llamada Node toma parametros Key y Data
-                this.Key = Key; // constructor asigna los valores de estos parametros a las variables de instancia this.Key y this.Data
-                this.Data = Data;
-            }
-        }
-        Node Root;
-        public string Order = "";
+        private Node<T> Raiz = new Node<T>();
+        private Node<T> temp = new Node<T>();
+        private List<T> listaOrdenada = new List<T>();
+        public int comparaciones = 0;
+        public int rot = 0;
 
-        public void Add(T Key, Y Data) 
+        public void Add(T value)
         {
-            Node item = new Node(Key, Data);
-            if (Root == null) 
+            Insert(value);
+        }
+        public int ObtenerFE(Node<T> n)
+        {
+
+            if (n == null)
             {
-                Root = item;
+                return -1;
             }
             else
             {
-                Root = Add(Root, item);
+                return n.FE;
             }
+
         }
-
-        private Node Add(Node actual, Node item)
+        protected override void Delete(Node<T> nodo)
         {
-            if (actual == null)
+            if (nodo.Izquierdo.Valor == null && nodo.Derecho.Valor == null) // Caso 1
             {
-                actual = item;
-                return actual;
+                nodo.Valor = nodo.Derecho.Valor;
             }
-            else if(item.Key.CompareTo(actual.Key) < 0)
+            else if (nodo.Derecho.Valor == null) // Caso 2
             {
-                actual.Left = Add(actual.Left, item);
-                actual = Balance(actual);
-
+                nodo.Valor = nodo.Izquierdo.Valor;
+                nodo.Derecho = nodo.Izquierdo.Derecho;
+                nodo.Izquierdo = nodo.Izquierdo.Izquierdo;
             }
-            else if(item.Key.CompareTo(actual.Key) > 0)
+            else // Caso 3
             {
-                actual.Right = Add(actual.Right, item);
-                actual = Balance(actual);
-            }
-            return actual;
-        }
-
-        private Node Balance(Node actual)
-        {
-            if (dBalance(actual) < -1) // -1 si su subarbol izquierdo es mas alto
-            {
-                if (dBalance(actual.Left) > 0 )
+                if (nodo.Izquierdo.Valor != null)
                 {
-                    actual = RotLR(actual);
+                    temp = Derecha(nodo.Izquierdo);
                 }
                 else
                 {
-                    actual = RotLL(actual);
+                    temp = Derecha(nodo);
                 }
+                nodo.Valor = temp.Valor;
             }
-            else if (dBalance(actual) > 1) // 1 si su subarbol derecho derecho es mas alto
+
+        }
+
+        public T Remove(T deleted)
+        {
+            Node<T> busc = new Node<T>();
+            busc = Get(Raiz, deleted);
+            if (busc != null)
             {
-                if (dBalance(actual.Right) > 0 )
+                Delete(busc);
+            }
+            return deleted;
+        }
+        private Node<T> Derecha(Node<T> nodo)
+        {
+            if (nodo.Derecho.Valor == null)
+            {
+                if (nodo.Izquierdo.Valor != null)
                 {
-                    actual = RotRR(actual);
+                    return Derecha(nodo.Izquierdo);
                 }
                 else
                 {
-                    actual = RotRL(actual);
+                    Node<T> temporal = new Node<T>();
+                    temporal.Valor = nodo.Valor;
+                    nodo.Valor = nodo.Derecho.Valor;
+                    return temporal;
                 }
-            }
-            return actual;
-        }
-
-        private Node RotRR(Node root)
-        {
-            Node temp = root.Right;
-            root.Right = root.Left;
-            root.Left = root;
-            return temp;
-        }
-
-        private Node RotLL(Node root)
-        {
-            Node temp = root.Left;
-            root.Left = root.Right;
-            root.Right = root;
-            return temp;
-        }
-
-        private Node RotRL(Node root)
-        {
-            Node temp = root.Right;
-            root.Right = RotLL(temp);
-            return RotRR(root);
-        }
-
-        private Node RotLR(Node root)
-        {
-            Node temp = root.Left;
-            root.Left = RotRR(temp);
-            return RotLL(root);
-        }
-
-        private int dBalance(Node actual) 
-        {
-            int Lbalance = Height(actual.Left);
-            int Rbalance = Height(actual.Right);
-            return Rbalance - Lbalance;
-        }
-
-        private int Height(Node actual)
-        {
-            if(actual == null)
-            {
-                return 0;
             }
             else
             {
-                int Lheight = Height(actual.Left);
-                int Rheight = Height(actual.Right);
-                return Lheight > Rheight ? Lheight + 1 : Rheight + 1; // operador ternario si izq es mayor que derecha le agregado uno a izq sino se cumple se agrega uno a derecha
+                return Derecha(nodo.Derecho);
             }
         }
-
-        public string InOrder()
+        protected override Node<T> Get(Node<T> nodo, T value)
         {
-            return InOrder(Root);
-        }
-
-        public string InOrder(Node head)
-        {
-            if (head == null)
+            if (value.CompareTo(nodo.Valor) == 0)
             {
-                return "";
+                return nodo;
             }
-            InOrder(head.Left); //Recursivamente se ejecutan en el siguiente orden ▻ Recorrer el subárbol izquierdo ▻ Visitar la raíz ▻ Recorrer el subárbol derecho
-            Order += head.Key.ToString() + "=>";
-            InOrder(head.Right);
-            return Order;
+            else if (value.CompareTo(nodo.Valor) == -1)
+            {
+                if (nodo.Izquierdo.Valor == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return Get(nodo.Izquierdo, value);
+                }
+            }
+            else
+            {
+                if (nodo.Derecho.Valor == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return Get(nodo.Derecho, value);
+                }
+            }
+        }
+        public Node<T> InsertarAVL(Node<T> nodo, Node<T> tempo) //Se inserta el valor en el arbol y se verifico si está ordenado
+        {
+            try
+            {
+                Node<T> nuevoNodo = tempo;
+
+                if (nodo.Valor.CompareTo(tempo.Valor) == -1)
+                {
+                    if (tempo.Izquierdo.Valor == null)
+                    {
+                        tempo.Izquierdo = nodo;
+
+                    }
+                    else
+                    {
+
+                        tempo.Izquierdo = InsertarAVL(nodo, tempo.Izquierdo);
+
+                        if ((ObtenerFE(tempo.Izquierdo) - ObtenerFE(tempo.Derecho) == 2))
+                        {
+                            if (nodo.Valor.CompareTo(tempo.Izquierdo.Valor) == -1)
+                            {
+                                nuevoNodo = RotIzq(tempo);
+                            }
+                            else
+                            {
+                                nuevoNodo = RotDIzq(tempo);
+                            }
+                        }
+
+                    }
+                }
+                else if (nodo.Valor.CompareTo(tempo.Valor) == 1)
+                {
+
+                    if (tempo.Derecho.Valor == null)
+                    {
+                        tempo.Derecho = nodo;
+                    }
+                    else
+                    {
+
+
+                        tempo.Derecho = InsertarAVL(nodo, tempo.Derecho);
+                        if ((ObtenerFE(tempo.Derecho) - ObtenerFE(tempo.Izquierdo) == 2))
+                        {
+                            if (nodo.Valor.CompareTo(tempo.Derecho.Valor) == 1)
+                            {
+                                nuevoNodo = RotDer(tempo);
+                            }
+                            else
+                            {
+                                nuevoNodo = RotDDER(tempo);
+                            }
+                        }
+
+                    }
+                }
+                //altura
+                if ((tempo.Izquierdo == null) && (tempo.Derecho != null))
+                {
+                    tempo.FE = tempo.Derecho.FE + 1;
+                }
+                else if ((tempo.Izquierdo != null) && (tempo.Derecho == null))
+                {
+                    tempo.FE = tempo.Izquierdo.FE + 1;
+                }
+                else
+                {
+                    tempo.FE = Math.Max(ObtenerFE(tempo.Izquierdo), ObtenerFE(nodo.Derecho)) + 1;
+                }
+                return nuevoNodo;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public Node<T> CrearNodoAVL(T valor)
+        {
+            Node<T> nodo = new Node<T>();
+            nodo.Valor = valor;
+            nodo.FE = 0;
+            nodo.Izquierdo = new Node<T>();
+            nodo.Derecho = new Node<T>();
+            return nodo;
+
+        }
+        public void Insert(T value)
+        {
+            try
+            {
+                Node<T> nuevo = CrearNodoAVL(value);
+
+                if (Raiz.Valor == null)
+                {
+                    Raiz = nuevo;
+                }
+                else
+                {
+                    Raiz = InsertarAVL(nuevo, Raiz);
+
+                }
+
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        protected override Node<T> Insert(Node<T> nodo, T value)
+        {
+            try
+            {
+                Node<T> nuevo = CrearNodoAVL(value);
+
+                if (nodo == null)
+                {
+                    nodo = nuevo;
+                }
+                else
+                {
+                    nodo = InsertarAVL(nuevo, nodo);
+
+                }
+                return nodo;
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public Node<T> RotIzq(Node<T> nodo)
+        {
+            rot++;
+            Node<T> aux = nodo.Izquierdo;
+
+            nodo.Izquierdo = aux.Derecho;
+            aux.Derecho = nodo;
+            nodo.FE = Math.Max(ObtenerFE(nodo.Izquierdo), ObtenerFE(nodo.Derecho)) + 1;//Devuelve el mayor
+            aux.FE = Math.Max(ObtenerFE(aux.Izquierdo), ObtenerFE(aux.Derecho)) + 1;// Devuelve el mayor
+            return aux;
+        }
+
+        public Node<T> RotDer(Node<T> nodo)
+        {
+            rot++;
+            Node<T> aux = nodo.Derecho;
+            nodo.Derecho = aux.Izquierdo;
+            aux.Izquierdo = nodo;
+            nodo.FE = Math.Max(ObtenerFE(nodo.Izquierdo), ObtenerFE(nodo.Derecho)) + 1;//Devuelve el mayor
+            aux.FE = Math.Max(ObtenerFE(aux.Izquierdo), ObtenerFE(aux.Derecho)) + 1;// Devuelve el mayor
+            return aux;
+        }
+
+        public Node<T> RotDIzq(Node<T> nodo)// Rotación Doble Izquierda
+        {
+            rot++;
+            Node<T> tem = new Node<T>();
+            nodo.Izquierdo = RotDer(nodo.Izquierdo);
+            tem = RotIzq(nodo);
+            return tem;
+
+        }
+
+        public Node<T> RotDDER(Node<T> nodo)// Rotación Doble Derecho
+        {
+            rot++;
+            Node<T> tem = new Node<T>();
+            nodo.Derecho = RotIzq(nodo.Derecho);
+            tem = RotDer(nodo);
+            return tem;
+
+        }
+
+        private void InOrder(Node<T> nodo)
+        {
+            if (nodo.Valor != null)
+            {
+                InOrder(nodo.Izquierdo);
+                listaOrdenada.Add(nodo.Valor);
+                InOrder(nodo.Derecho);
+            }
+        }
+
+        public List<T> ObtenerLista()
+        {
+            listaOrdenada.Clear();
+            InOrder(Raiz);
+            return listaOrdenada;
+        }
+
+        public List<T> Obtener(Func<T, bool> Predicate)
+        {
+            List<T> prov = new List<T>();
+            comparaciones = 0;
+            ObtenerLista();
+            for (int i = 0; i < listaOrdenada.Count(); i++)
+            {
+                if (Predicate(listaOrdenada[i]))
+                {
+                    comparaciones = i;
+                    prov.Add(listaOrdenada[i]);
+                }
+            }
+            return prov;
+        }
+
+        public int GetComparaciones()
+        {
+            return comparaciones;
+        }
+
+        public int GetRotacion()
+        {
+            return rot;
         }
 
 

@@ -16,6 +16,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\julio\Desktop\LAB02-ED1
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/julio/Desktop/LAB02-ED1/Views/AVL/Create2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVZMXENyZWF0ZTIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/julio/Desktop/LAB02-ED1/Views/AVL/Index2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVZMXEluZGV4Mi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/julio/Desktop/LAB02-ED1/Views/Cliente/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/julio/Desktop/LAB02-ED1/Views/Cliente/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/julio/Desktop/LAB02-ED1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
