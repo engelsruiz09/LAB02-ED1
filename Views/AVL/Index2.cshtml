@@ -1,0 +1,110 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<LAB02_ED1_G.Models.ExtensionVehiculo>
+@{
+    ViewData["Title"] = "Vehiculos";
+}
+<h1>Crear Cliente</h1>
+<p>
+    <a asp-action="Create2">Nuevo Cliente</a>
+</p>
+
+<form asp-action="CargarArchivo2" method="post" enctype="multipart/form-data">
+    <input type="file" name="File" />
+    <input type="submit" value="Importar" />
+</form>
+<div class="form-inline">
+    <form asp-action="BuscDPI" method="post">
+        <input name="BuscDPI" type="search" class="form-control me-2" placeholder="DPI" />
+        <button type="submit" class="btn btn-outline-success">Buscar</button>
+    </form>
+    <form asp-action="BuscNumSerie" method="post">
+        <input name="BuscSerie" type="search" class="form-control me-2" placeholder="Num Serie" />
+        <button type="submit" class="btn btn-outline-success">Buscar</button>
+    </form>
+    <form asp-action="BuscCorreo" method="post">
+        <input name="BuscCorreo" type="search" class="form-control me-2" placeholder="Correo" />
+        <button type="submit" class="btn btn-outline-success">Buscar</button>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Propietario</th>
+            <th>Color</th>
+            <th>Marca</th>
+            <th>Numero de Serie</th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Propietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumSerie)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit2", new { id = item.ID }) |
+                   @* @Html.ActionLink("Details", "Details2", new { id = item.ID }) |*@
+                    @Html.ActionLink("Delete", "Delete2", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (null != TempData["TCargaAVL"])
+{
+    <script type="text/javascript">
+        alert('@TempData["TCargaAVL"]');
+    </script>
+}
+
+
+@if (null != TempData["TComp"])
+{
+    <script type="text/javascript">
+        alert('@TempData["TComp"]');
+    </script>
+}
+
+@if (null != TempData["TComp2"])
+{
+    <script type="text/javascript">
+        alert('@TempData["TComp2"]');
+    </script>
+}
+
+@if (null != TempData["TComp3"])
+{
+    <script type="text/javascript">
+        alert('@TempData["TComp3"]');
+    </script>
+}
+
+@if (null != TempData["TRot"])
+{
+    <script type="text/javascript">
+        alert('@TempData["TRot"]');
+    </script>
+}
