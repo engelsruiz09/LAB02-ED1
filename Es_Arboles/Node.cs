@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace Es_Arboles
 {
-    public class Node<T> where T : IComparable<T>
+    public class Node<T> 
     {
+        public T Valor { get; set; }
         public Node<T> Izquierdo { get; set; }
         public Node<T> Derecho { get; set; }
-        public T Valor { get; set; }
+        
 
+        //Para el Binario
+        public int Profundidad { get; set; }
+        public int ContadorComparaciones { get; set; }
 
         //Para el AVL
         public int FE { get; set; }

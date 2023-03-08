@@ -64,3 +64,14 @@ E:\Carlos\source\repos\Estructura de Datos I\LAB02-ED1\obj\Debug\net6.0\refint\L
 E:\Carlos\source\repos\Estructura de Datos I\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.pdb
 E:\Carlos\source\repos\Estructura de Datos I\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.genruntimeconfig.cache
 E:\Carlos\source\repos\Estructura de Datos I\LAB02-ED1\obj\Debug\net6.0\ref\LAB02-ED1-G.dll
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.csproj.AssemblyReference.cache
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.AssemblyInfoInputs.cache
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.AssemblyInfo.cs
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.csproj.CoreCompileInputs.cache
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.RazorAssemblyInfo.cache
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.RazorAssemblyInfo.cs
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.dll
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\refint\LAB02-ED1-G.dll
+C:\Users\Emilio\Desktop\ED 1 Lab\Lab 3\LAB02-ED1\obj\Debug\net6.0\LAB02-ED1-G.pdb
