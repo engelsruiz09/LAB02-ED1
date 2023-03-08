@@ -27,7 +27,8 @@ namespace LAB02_ED1_G.Controllers
             }
             else
             {
-                return View(Singleton.Instance.ArbolVehiculos.ObtenerLista());
+                return View();
+               // return View(Singleton.Instance.ArbolVehiculos.ObtenerLista());
             }
         }
 

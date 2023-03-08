@@ -17,8 +17,10 @@ namespace LAB02_ED1_G.Controllers
         public IActionResult Index()
         {
             //return View();
-            return View(Singleton.Instance.ArbolVehiculos.ObtenerLista());
-            
+            return View();
+            //Singleton.Instance.ArbolVehiculos.ObtenerLista()
+
+
         }
 
         public IActionResult Privacy()

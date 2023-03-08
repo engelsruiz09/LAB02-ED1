@@ -24,9 +24,9 @@ namespace LAB02_ED1_G.Models
             }
         }
 
-        public static List<ExtensionVehiculo> Filter(string Name)
-        {
-            return Singleton.Instance.ArbolVehiculos.ObtenerLista().Where(x => x.NumSerie.ToLower().Contains(Name.ToLower())).ToList();
-        }
+        //public static List<ExtensionVehiculo> Filter(string Name)
+        //{
+        //    return Singleton.Instance.ArbolVehiculos.ObtenerLista().Where(x => x.NumSerie.ToLower().Contains(Name.ToLower())).ToList();
+        //}
     }
 }
