@@ -3,6 +3,7 @@ using LAB02_ED1_G.Models.Datos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace LAB02_ED1_G.Controllers
 {
@@ -33,7 +34,6 @@ namespace LAB02_ED1_G.Controllers
             return View();
         }
 
-        // POST: ClientesManualController1/Create
         [HttpPost]
         public ActionResult Create2(IFormCollection collection)
         {
@@ -57,6 +57,121 @@ namespace LAB02_ED1_G.Controllers
                 return View();
             }
         }
+
+        public ActionResult Edit2(string id)
+        {
+            var viewautos = Singleton.Instance.AVL.ObtenerLista().FirstOrDefault(a => a.ID == id);
+            return View(viewautos);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit2(string id, IFormCollection collection)
+        {
+            try
+            {
+                var viewautos = Singleton.Instance.AVL.ObtenerLista().FirstOrDefault(a =>a.ID == id);
+                string auxids = Singleton.Instance.AVL.ObtenerLista().FirstOrDefault(a => a.ID == id).ID;
+                Singleton.Instance.AVL.Remove(viewautos);
+                var nuevoauto = new Models.ExtensionVehiculo
+                {
+                    ID = auxids,
+                    Email = collection["Email"],
+                    Propietario = collection["Propietario"],
+                    Color = collection["Color"],
+                    Marca = collection["Marca"],
+                    NumSerie = collection["NumSerie"]
+                };
+                Singleton.Instance.flag = 0;
+                Singleton.Instance.AVL.Add(nuevoauto);
+                return RedirectToAction(nameof(Index2));
+            }
+            catch
+            {
+
+                return View();
+            }
+        }
+        public ActionResult Delete2(string id)
+        {
+            Singleton.Instance.flag = 0;
+            var Viewautos = Singleton.Instance.AVL.ObtenerLista().FirstOrDefault(a => a.ID == id);
+            return View(Viewautos);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete2(string id, IFormCollection collection)
+        {
+            try
+            {
+                Singleton.Instance.flag = 0;
+                var Viewautos = Singleton.Instance.AVL.ObtenerLista().FirstOrDefault(a => a.ID == id);
+                Singleton.Instance.AVL.Remove(Viewautos);
+                return RedirectToAction(nameof(Index2));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult BuscarDPI(string BuscDPI)
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.AVL.Obtener(a => a.ID == BuscDPI);
+                int a = Singleton.Instance.AVL.GetComparaciones();
+                TempData["TComp"] = "Se realizaron: " + Convert.ToString(a) + " comparaciones.";
+                return RedirectToAction(nameof(Index2));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index2));
+
+            }
+        }
+        public ActionResult BuscarNumSerie(string BuscSerie)
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.AVL.Obtener(a => a.NumSerie == BuscSerie);
+                int a = Singleton.Instance.AVL.GetComparaciones();
+                TempData["TComp2"] = "Se realizaron: " + Convert.ToString(a) + " comparaciones.";
+                return RedirectToAction(nameof(Index2));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index2));
+
+            }
+        }
+        public ActionResult BuscarCorreo(string BuscCorreo)
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.AVL.Obtener(a => a.Email == BuscCorreo);
+                int a = Singleton.Instance.AVL.GetComparaciones();
+                TempData["TComp3"] = "Se realizaron: " + Convert.ToString(a) + " comparaciones.";
+                return RedirectToAction(nameof(Index2));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index2));
+
+            }
+        }
+
 
         public ActionResult CargarArchivo2(IFormFile File)
         {
@@ -125,11 +240,6 @@ namespace LAB02_ED1_G.Controllers
                 return RedirectToAction(nameof(Index2));
 
             }
-
-
-            //Imprimir "time" en pantalla
-
-
         }
     }
 }
