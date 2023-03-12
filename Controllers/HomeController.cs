@@ -1,4 +1,5 @@
 ﻿using LAB02_ED1_G.Models;
+using LAB02_ED1_G.Models.Datos;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,12 +16,17 @@ namespace LAB02_ED1_G.Controllers
 
         public IActionResult Index()
         {
+            //return View();
             return View();
+            //Singleton.Instance.ArbolVehiculos.ObtenerLista()
+
+
         }
 
         public IActionResult Privacy()
         {
             return View();
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

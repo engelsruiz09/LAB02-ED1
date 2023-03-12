@@ -7,4 +7,8 @@
     <RootNamespace>LAB02_ED1_G</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\imgs\" />
+  </ItemGroup>
+
 </Project>

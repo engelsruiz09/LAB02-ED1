@@ -1,0 +1,142 @@
+﻿@model IEnumerable<LAB02_ED1_G.Models.ExtensionVehiculo>
+@{
+    ViewData["Title"] = "Vehiculos";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<h1>Crear Cliente</h1>
+<p>
+    <a asp-action="Create2">Nuevo Cliente</a>
+</p>
+
+<form asp-action="CargarArchivo2" method="post" enctype="multipart/form-data" class="form-inline mb-3">
+    <input class="form-control" type="file" name="File" />
+    <input class="btn btn-outline-primary" type="submit" value="Importar" />
+</form>
+<h3 class="text-start"> Busqueda</h3>
+<div class="form-inline mb-3 align-content-around">
+    <form asp-action="BuscarDPI" method="post" class="mx-2">
+        <input name="BuscDPI" type="search" class="form-control" placeholder="DPI" />
+            <button type="submit" class="btn btn-outline-success">Buscar</button>
+        </form>
+    <form asp-action="BuscarNumSerie" method="post" class="mx-2">
+        <input name="BuscSerie" type="search" class="form-control" placeholder="Num Serie" />
+            <button type="submit" class="btn btn-outline-success">Buscar</button>
+        </form>
+    <form asp-action="BuscarCorreo" method="post" class="mx-2">
+            <input name="BuscCorreo" type="search" class="form-control " placeholder="Correo" />
+            <button type="submit" class="btn btn-outline-success">Buscar</button>
+        </form>
+
+</div>
+<h2 class="text-center mb-3">Registros</h2>
+<div class="form-inline mb-3 justify-content-end">
+    <form asp-action="OrdenarDPI" method="post" class="mx-2">
+        <button type="submit" class="btn btn-outline-info">OrdenarDPI</button>
+    </form>
+    <form asp-action="OrdenarSerie" method="post" class="mx-2">
+        <button type="submit" class="btn btn-outline-info">OrdenarSerie</button>
+    </form>
+    <form asp-action="OrdenarEmail" method="post" class="mx-2">
+        <button type="submit" class="btn btn-outline-info">OrdenarEmail</button>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Propietario</th>
+            <th>Color</th>
+            <th>Marca</th>
+            <th>Numero de Serie</th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Propietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumSerie)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit2", new { id = item.ID }) |
+                    @* @Html.ActionLink("Details", "Details2", new { id = item.ID }) |*@
+                    @Html.ActionLink("Delete", "Delete2", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@if (null != TempData["TComp"])
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Tiempo de Comparaciones',
+            '@TempData["TComp"]',
+            'success'
+        );
+    </script>
+}
+
+@if (null != TempData["TComp2"])
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Tiempo de Comparaciones 2',
+            '@TempData["TComp2"]',
+            'success'
+        );
+    </script>
+}
+
+@if (null != TempData["TComp3"])
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Tiempo de Comparaciones de Correo',
+            '@TempData["TComp3"]',
+            'success'
+        );
+    </script>
+}
+
+@if (null != TempData["TRot"] && null != TempData["TCargaAVL"])
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Rotaciones de carga AVL',
+            '@TempData["TRot"]',
+            'success'
+        ).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Tiempo de carga',
+                    text: '@TempData["TCargaAVL"]',
+                    icon: 'success'
+                });
+            }
+        });
+    </script>
+}
