@@ -1,40 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model IEnumerable<LAB02_ED1_G.Models.ExtensionVehiculo>
+﻿@model IEnumerable<LAB02_ED1_G.Models.ExtensionVehiculo>
 @{
     ViewData["Title"] = "Vehiculos";
 }
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 <h1>Crear Cliente</h1>
 <p>
     <a asp-action="Create2">Nuevo Cliente</a>
 </p>
 
-<form asp-action="CargarArchivo2" method="post" enctype="multipart/form-data">
-    <input type="file" name="File" />
-    <input type="submit" value="Importar" />
+<form asp-action="CargarArchivo2" method="post" enctype="multipart/form-data" class="form-inline mb-3">
+    <input class="form-control" type="file" name="File" />
+    <input class="btn btn-outline-primary" type="submit" value="Importar" />
 </form>
-<div class="form-inline">
-    <form asp-action="BuscDPI" method="post">
-        <input name="BuscDPI" type="search" class="form-control me-2" placeholder="DPI" />
-        <button type="submit" class="btn btn-outline-success">Buscar</button>
+<h3 class="text-start"> Busqueda</h3>
+<div class="form-inline mb-3 align-content-around">
+    <form asp-action="BuscarDPI" method="post" class="mx-2">
+        <input name="BuscDPI" type="search" class="form-control" placeholder="DPI" />
+            <button type="submit" class="btn btn-outline-success">Buscar</button>
+        </form>
+    <form asp-action="BuscarNumSerie" method="post" class="mx-2">
+        <input name="BuscSerie" type="search" class="form-control" placeholder="Num Serie" />
+            <button type="submit" class="btn btn-outline-success">Buscar</button>
+        </form>
+    <form asp-action="BuscarCorreo" method="post" class="mx-2">
+            <input name="BuscCorreo" type="search" class="form-control " placeholder="Correo" />
+            <button type="submit" class="btn btn-outline-success">Buscar</button>
+        </form>
+
+</div>
+<h2 class="text-center mb-3">Registros</h2>
+<div class="form-inline mb-3 justify-content-end">
+    <form asp-action="OrdenarDPI" method="post" class="mx-2">
+        <button type="submit" class="btn btn-outline-info">OrdenarDPI</button>
     </form>
-    <form asp-action="BuscNumSerie" method="post">
-        <input name="BuscSerie" type="search" class="form-control me-2" placeholder="Num Serie" />
-        <button type="submit" class="btn btn-outline-success">Buscar</button>
+    <form asp-action="OrdenarSerie" method="post" class="mx-2">
+        <button type="submit" class="btn btn-outline-info">OrdenarSerie</button>
     </form>
-    <form asp-action="BuscCorreo" method="post">
-        <input name="BuscCorreo" type="search" class="form-control me-2" placeholder="Correo" />
-        <button type="submit" class="btn btn-outline-success">Buscar</button>
-    </form>
-    <form asp-action="OrdenarDPI" method="post">
-        <button type="submit" class="btn btn-outline-success">OrdenarDPI</button>
-    </form>
-    <form asp-action="OrdenarSerie" method="post">
-        <button type="submit" class="btn btn-outline-success">OrdenarSerie</button>
-    </form>
-    <form asp-action="OrdenarEmail" method="post">
-        <button type="submit" class="btn btn-outline-success">OrdenarEmail</button>
+    <form asp-action="OrdenarEmail" method="post" class="mx-2">
+        <button type="submit" class="btn btn-outline-info">OrdenarEmail</button>
     </form>
 </div>
 <table class="table">
@@ -74,7 +79,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit2", new { id = item.ID }) |
-                   @* @Html.ActionLink("Details", "Details2", new { id = item.ID }) |*@
+                    @* @Html.ActionLink("Details", "Details2", new { id = item.ID }) |*@
                     @Html.ActionLink("Delete", "Delete2", new { id = item.ID })
                 </td>
             </tr>
@@ -82,38 +87,56 @@
     </tbody>
 </table>
 
-@if (null != TempData["TCargaAVL"])
-{
-    <script type="text/javascript">
-        alert('@TempData["TCargaAVL"]');
-    </script>
-}
 
 
 @if (null != TempData["TComp"])
 {
     <script type="text/javascript">
-        alert('@TempData["TComp"]');
+        Swal.fire(
+            'Tiempo de Comparaciones',
+            '@TempData["TComp"]',
+            'success'
+        );
     </script>
 }
 
 @if (null != TempData["TComp2"])
 {
     <script type="text/javascript">
-        alert('@TempData["TComp2"]');
+        Swal.fire(
+            'Tiempo de Comparaciones 2',
+            '@TempData["TComp2"]',
+            'success'
+        );
     </script>
 }
 
 @if (null != TempData["TComp3"])
 {
     <script type="text/javascript">
-        alert('@TempData["TComp3"]');
+        Swal.fire(
+            'Tiempo de Comparaciones de Correo',
+            '@TempData["TComp3"]',
+            'success'
+        );
     </script>
 }
 
-@if (null != TempData["TRot"])
+@if (null != TempData["TRot"] && null != TempData["TCargaAVL"])
 {
     <script type="text/javascript">
-        alert('@TempData["TRot"]');
+        Swal.fire(
+            'Rotaciones de carga AVL',
+            '@TempData["TRot"]',
+            'success'
+        ).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Tiempo de carga',
+                    text: '@TempData["TCargaAVL"]',
+                    icon: 'success'
+                });
+            }
+        });
     </script>
 }

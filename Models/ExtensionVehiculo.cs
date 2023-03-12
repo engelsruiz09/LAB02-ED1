@@ -37,9 +37,7 @@ namespace LAB02_ED1_G.Models
     {
         public int Compare(ExtensionVehiculo p1, ExtensionVehiculo p2)
         {
-            int n1 = Convert.ToInt32(p1.NumSerie);
-            int n2 = Convert.ToInt32(p2.NumSerie);
-            return n1.CompareTo(n2);
+            return string.Compare(p1.NumSerie, p2.NumSerie);
         }
     }
 }
