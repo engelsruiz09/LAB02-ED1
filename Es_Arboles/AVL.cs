@@ -336,7 +336,9 @@ namespace Es_Arboles
         {
             return rot;
         }
-
-
+        public void Balance()
+        {
+            Node<T> aux = Raiz;
+        }
     }
 }

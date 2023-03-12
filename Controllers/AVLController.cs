@@ -241,5 +241,58 @@ namespace LAB02_ED1_G.Controllers
 
             }
         }
-    }
+        public ActionResult OrdenarDPI()
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.AVL.ObtenerLista();
+                Singleton.Instance.Aux.Sort(new PropietarioID());
+                return RedirectToAction(nameof(Index2));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index2));
+
+            }
+        }
+		public ActionResult OrdenarSerie()
+		{
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.AVL.ObtenerLista();
+                Singleton.Instance.Aux.Sort(new VehiculoID());
+                /*var cmp = Singleton.Instance.AVL.ObtenerLista();
+                cmp.Sort();*/
+                return RedirectToAction(nameof(Index2));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index2));
+
+            }
+        }
+		public ActionResult OrdenarEmail()
+		{
+            try
+            {
+                Singleton.Instance.flag = 1;
+                var cmp = Singleton.Instance.AVL.ObtenerLista();
+                cmp.Sort(new PropietarioEmail());
+                return RedirectToAction(nameof(Index2));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index2));
+
+            }
+        }
+	}
 }

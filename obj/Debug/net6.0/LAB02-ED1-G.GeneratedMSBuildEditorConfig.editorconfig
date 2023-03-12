@@ -9,61 +9,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = LAB02_ED1_G
 build_property.RootNamespace = LAB02_ED1_G
-build_property.ProjectDir = C:\Users\julio\Desktop\LAB02-ED1\
+build_property.ProjectDir = C:\Users\eddie\OneDrive - Universidad Rafael Landivar\U\Año 5\Primer Ciclo\Estructura de Datos 1 (lab)\Lab2\ABL\LAB02-ED1\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\julio\Desktop\LAB02-ED1
+build_property.MSBuildProjectDirectory = C:\Users\eddie\OneDrive - Universidad Rafael Landivar\U\Año 5\Primer Ciclo\Estructura de Datos 1 (lab)\Lab2\ABL\LAB02-ED1
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/AVL/Create2.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/AVL/Create2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVZMXENyZWF0ZTIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/AVL/Delete2.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/AVL/Delete2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVZMXERlbGV0ZTIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/AVL/Edit2.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/AVL/Edit2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVZMXEVkaXQyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/AVL/Index2.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/AVL/Index2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVZMXEluZGV4Mi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/Cliente/Create.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/Cliente/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/Cliente/Index.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/Cliente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/Home/Index.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/Home/Privacy.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/Shared/Error.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/_ViewImports.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/_ViewStart.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/julio/Desktop/LAB02-ED1/Views/Shared/_Layout.cshtml]
+[C:/Users/eddie/OneDrive - Universidad Rafael Landivar/U/Año 5/Primer Ciclo/Estructura de Datos 1 (lab)/Lab2/ABL/LAB02-ED1/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-9i2guo1m4k

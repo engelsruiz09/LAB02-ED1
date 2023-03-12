@@ -13,4 +13,16 @@ namespace LAB02_ED1_G.Models
         [Required]
         public string NumSerie { get; set; }
     }
+    
+    //public class ClienteNombre: IComparable<Cliente>
+    //{
+    //    public int CompareTo(Cliente other)
+    //    {
+    //        if (other == null) return 0;
+    //        else
+    //        {
+    //            return this.ID.CompareTo(other.ID);
+    //        }
+    //    }
+    //}
 }
