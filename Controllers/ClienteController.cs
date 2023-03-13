@@ -12,12 +12,10 @@ namespace LAB02_ED1_G.Controllers
     public class ClienteController : Controller
     {
         private IWebHostEnvironment Environment;
-
         public ClienteController(IWebHostEnvironment _environment)
         {
             Environment = _environment;
         }
-
         public IActionResult Index()
         {
             if (Singleton.Instance.flag == 1)
@@ -27,16 +25,13 @@ namespace LAB02_ED1_G.Controllers
             }
             else
             {
-                return View();
-               // return View(Singleton.Instance.ArbolVehiculos.ObtenerLista());
+               return View(Singleton.Instance.ArbolVehiculos.ObtenerLista());
             }
         }
-
         public ActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Create(IFormCollection collection)
         {
@@ -49,11 +44,9 @@ namespace LAB02_ED1_G.Controllers
                     Propietario = collection["Propietario"],
                     Color = collection["color"],
                     Marca = collection["Marca"],
-                    NumSerie = collection["NumSerie"],
-                    
+                    NumSerie = collection["NumSerie"],                    
                 };
-                //Singleton.Instance.ArbolVehiculos.Add(NewAuto);
-                //para el arbol binario hay que agragar un metodo add 
+                Singleton.Instance.ArbolVehiculos.Add(NewAuto);
                 Singleton.Instance.flag = 0;
                 return RedirectToAction(nameof(Index));
             }
@@ -62,7 +55,115 @@ namespace LAB02_ED1_G.Controllers
                 return View();
             }
         }
+        public ActionResult Edit(string id)
+        {
+            var viewautos = Singleton.Instance.ArbolVehiculos.ObtenerLista().FirstOrDefault(a => a.ID == id);
+            return View(viewautos);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(string id, IFormCollection collection)
+        {
+            try
+            {
+                var viewautos = Singleton.Instance.ArbolVehiculos.ObtenerLista().FirstOrDefault(a => a.ID == id);
+                string auxids = Singleton.Instance.ArbolVehiculos.ObtenerLista().FirstOrDefault(a => a.ID == id).ID;
+                Singleton.Instance.ArbolVehiculos.Remove(viewautos);
+                var nuevoauto = new Models.ExtensionVehiculo
+                {
+                    ID = auxids,
+                    Email = collection["Email"],
+                    Propietario = collection["Propietario"],
+                    Color = collection["Color"],
+                    Marca = collection["Marca"],
+                    NumSerie = collection["NumSerie"]
+                };
+                Singleton.Instance.flag = 0;
+                Singleton.Instance.ArbolVehiculos.Add(nuevoauto);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
 
+                return View();
+            }
+        }
+        public ActionResult Delete(string id)
+        {
+            Singleton.Instance.flag = 0;
+            var Viewautos = Singleton.Instance.ArbolVehiculos.ObtenerLista().FirstOrDefault(a => a.ID == id);
+            return View(Viewautos);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(string id, IFormCollection collection)
+        {
+            try
+            {
+                Singleton.Instance.flag = 0;
+                var Viewautos = Singleton.Instance.ArbolVehiculos.ObtenerLista().FirstOrDefault(a => a.ID == id);
+                Singleton.Instance.ArbolVehiculos.Remove(Viewautos);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        public ActionResult BuscarDPI(string BuscDPI)
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.Obtener(a => a.ID == BuscDPI);
+                int a = Singleton.Instance.ArbolVehiculos.GetComparaciones();
+                TempData["TComp"] = "Se realizaron: " + Convert.ToString(a) + " comparaciones.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index));
+
+            }
+        }
+        public ActionResult BuscarNumSerie(string BuscSerie)
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.Obtener(a => a.NumSerie == BuscSerie);
+                int a = Singleton.Instance.ArbolVehiculos.GetComparaciones();
+                TempData["TComp2"] = "Se realizaron: " + Convert.ToString(a) + " comparaciones.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index));
+
+            }
+        }
+        public ActionResult BuscarCorreo(string BuscCorreo)
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.Obtener(a => a.Email == BuscCorreo);
+                int a = Singleton.Instance.ArbolVehiculos.GetComparaciones();
+                TempData["TComp3"] = "Se realizaron: " + Convert.ToString(a) + " comparaciones.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index));
+
+            }
+        }
         public ActionResult CargarArchivo(IFormFile File)
         {
             Stopwatch timer = new Stopwatch();
@@ -113,7 +214,7 @@ namespace LAB02_ED1_G.Controllers
                                 NumSerie = NumSerie,
 
                             };
-                            //Singleton.Instance.ArbolVehiculos.Add(nuevoVehiculo);
+                            Singleton.Instance.ArbolVehiculos.Add(nuevoVehiculo);
                             //agregar metodo cuando este arbol binario
                         }
                     }
@@ -129,11 +230,59 @@ namespace LAB02_ED1_G.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
+        }
+        public ActionResult OrdenarDPI()
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.ObtenerLista();
+                Singleton.Instance.Aux.Sort(new PropietarioID());
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index));
 
+            }
+        }
+        public ActionResult OrdenarSerie()
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.ObtenerLista();
+                Singleton.Instance.Aux.Sort(new VehiculoID());
+                /*var cmp = Singleton.Instance.ArbolVehiculos.ObtenerLista();
+                cmp.Sort();*/
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index));
 
-            //Imprimir "time" en pantalla
+            }
+        }
+        public ActionResult OrdenarEmail()
+        {
+            try
+            {
+                Singleton.Instance.flag = 1;
+                var cmp = Singleton.Instance.ArbolVehiculos.ObtenerLista();
+                cmp.Sort(new PropietarioEmail());
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                Singleton.Instance.flag = 0;
+                ViewData["Message"] = "No Encontrado";
+                return RedirectToAction(nameof(Index));
 
-
+            }
         }
     }
 }

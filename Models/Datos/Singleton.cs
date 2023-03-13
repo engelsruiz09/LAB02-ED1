@@ -4,7 +4,7 @@
     {
         public int flag;
         public List<ExtensionVehiculo> Aux = new List<ExtensionVehiculo>();
-        //public Es_Arboles.ArbolBinario<ExtensionVehiculo> ArbolVehiculos = new Es_Arboles.ArbolBinario<ExtensionVehiculo>();
+        public Es_Arboles.ABB<ExtensionVehiculo> ArbolVehiculos = new Es_Arboles.ABB<ExtensionVehiculo>();
         public Es_Arboles.AVL<ExtensionVehiculo> AVL = new Es_Arboles.AVL<ExtensionVehiculo>();
 
         private static Singleton _instance = null;

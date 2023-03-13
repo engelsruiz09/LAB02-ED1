@@ -10,12 +10,10 @@ namespace LAB02_ED1_G.Controllers
     public class AVLController : Controller
     {
         private IWebHostEnvironment Environment;
-
         public AVLController(IWebHostEnvironment _environment)
         {
             Environment = _environment;
         }
-
         public IActionResult Index2()
         {
             if (Singleton.Instance.flag == 1)
@@ -28,12 +26,10 @@ namespace LAB02_ED1_G.Controllers
                 return View(Singleton.Instance.AVL.ObtenerLista());
             }
         }
-
         public ActionResult Create2()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Create2(IFormCollection collection)
         {
@@ -57,13 +53,11 @@ namespace LAB02_ED1_G.Controllers
                 return View();
             }
         }
-
         public ActionResult Edit2(string id)
         {
             var viewautos = Singleton.Instance.AVL.ObtenerLista().FirstOrDefault(a => a.ID == id);
             return View(viewautos);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit2(string id, IFormCollection collection)
@@ -98,8 +92,6 @@ namespace LAB02_ED1_G.Controllers
             var Viewautos = Singleton.Instance.AVL.ObtenerLista().FirstOrDefault(a => a.ID == id);
             return View(Viewautos);
         }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete2(string id, IFormCollection collection)
@@ -116,7 +108,6 @@ namespace LAB02_ED1_G.Controllers
                 return View();
             }
         }
-
         public ActionResult BuscarDPI(string BuscDPI)
         {
             try
@@ -171,8 +162,6 @@ namespace LAB02_ED1_G.Controllers
 
             }
         }
-
-
         public ActionResult CargarArchivo2(IFormFile File)
         {
             Stopwatch timer = new Stopwatch();

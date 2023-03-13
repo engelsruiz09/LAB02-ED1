@@ -3,24 +3,24 @@ using System.Collections.Generic;
 
 namespace Es_Arboles
 {
-    public class ArbolBinario<T> : Node<T> where T : IComparable
+    public class ArbolBinario<T> : Node<T> where T : IComparable<T>
     {
         Node<T> NodoPadre = new Node<T>();
         Node<T> NodoBorrar = new Node<T>();
         public int AuxProfundidadIz = 0;
         public int AuxProfundidadDe = 0;
 
-        public void Agregar(T valor, Delegate delegado)
+        public void Agregar(T valor)
         {
-            Insercion(NodoPadre, valor, delegado); // Funcion que inserta el elemento
+            Insercion(NodoPadre, valor); // Funcion que inserta el elemento
         }
 
-        public void Borrar(T valor, Delegate delegado)
+        public void Borrar(T valor)
         {
-            Eliminacion(NodoPadre, valor, delegado); // Funcion que elimina el elemento
+            Eliminacion(NodoPadre, valor); // Funcion que elimina el elemento
         }
 
-        public void Insercion(Node<T> padre, T valor, Delegate delegado)
+        public void Insercion(Node<T> padre, T valor)
         {
             //Si el nodo esta vacio entonces se insertara en ese lugar, si no se mueve
             if(padre.Valor == null)
@@ -31,13 +31,13 @@ namespace Es_Arboles
                 padre.Izquierdo = new Node<T>();
                 padre.Derecho = new Node<T>();
             }
-            else if(Convert.ToInt32(delegado.DynamicInvoke(valor, padre.Valor))== -1) //(valor < padre.valor)//Verfica si se tiene que mover a la izquierda, si no se mueve a la derecha
+            else if(valor.CompareTo(padre.Valor)== -1) //(valor < padre.valor)//Verfica si se tiene que mover a la izquierda, si no se mueve a la derecha
             {
-                Insercion(padre.Izquierdo, valor, delegado); //Se mueve a la izquierda
+                Insercion(padre.Izquierdo, valor ); //Se mueve a la izquierda
             }
-            else if(Convert.ToInt32(delegado.DynamicInvoke(valor, padre.Valor))== 1) //(valor > padre.valor)
+            else if(valor.CompareTo(padre.Valor)== 1) //(valor > padre.valor)
             {
-                Insercion(padre.Derecho, valor, delegado); // Se mueve a la derecha
+                Insercion(padre.Derecho, valor ); // Se mueve a la derecha
             }
         }
 
@@ -76,18 +76,18 @@ namespace Es_Arboles
             }
         }
 
-        public T Busqueda(T valor, Delegate delegado)
+        public T Busqueda(T valor)
         {
             Node<T> aux = NodoPadre;
             Node<T> noexiste = new Node<T>();
             while(aux.Valor!=null)
             {
-                if(Convert.ToInt32(delegado.DynamicInvoke(valor, aux.Valor)) == 0) //(valor == aux.valor)//Encontro el valor buscado
+                if(valor.CompareTo(aux.Valor) == 0) //(valor == aux.valor)//Encontro el valor buscado
                 {
                     ContadorComparaciones += 1;
                     return aux.Valor; // Devuelve el valor buscado
                 }
-                else if(Convert.ToInt32(delegado.DynamicInvoke(valor, aux.Valor))== -1)//(valor < aux.valor)//Compara para saber si se tiene que mover a la izquierda
+                else if(valor.CompareTo(aux.Valor)== -1)//(valor < aux.valor)//Compara para saber si se tiene que mover a la izquierda
                 {
                     if(aux.Izquierdo.Valor!=null) //Verifica que no se encuentre en una hoja
                     {
@@ -99,7 +99,7 @@ namespace Es_Arboles
                         return noexiste.Valor; // Devuelve un valor vacio porque no encontro lo solicitado
                     }
                 }
-                else if(Convert.ToInt32(delegado.DynamicInvoke(valor, aux.Valor)) == 1) //(valor > aux.valor)//Compara para saber si se tiene que mover a la derecha
+                else if(valor.CompareTo(aux.Valor) == 1) //(valor > aux.valor)//Compara para saber si se tiene que mover a la derecha
                 {
                     if(aux.Derecho.Valor!= null) // Verifica que no se encuentre en una hoja
                     {
@@ -115,18 +115,18 @@ namespace Es_Arboles
             return aux.Valor; // El arbol esta vacio
         }
 
-        public void Eliminacion(Node<T> padre, T valor, Delegate delegado)
+        public void Eliminacion(Node<T> padre, T valor )
         {
             //Busca el elemento a eliminar con recursividad
-            if(Convert.ToInt32(delegado.DynamicInvoke(valor, padre.Valor)) == -1) //(valor < padre.valor)
+            if(valor.CompareTo(padre.Valor) == -1) //(valor < padre.valor)
             {
-                Eliminacion(padre.Izquierdo, valor, delegado);
+                Eliminacion(padre.Izquierdo, valor );
             }
-            else if( Convert.ToInt32(delegado.DynamicInvoke(valor, padre.Valor)) == 1) //(valor > padre.valor)
+            else if(valor.CompareTo(padre.Valor) == 1) //(valor > padre.valor)
             {
-                Eliminacion(padre.Derecho, valor, delegado);
+                Eliminacion(padre.Derecho, valor );
             }
-            else if(Convert.ToInt32(delegado.DynamicInvoke(valor, padre.Valor)) == 0) //(valor == padre.valor)//Encontro el elemento a eliminar
+            else if(valor.CompareTo(padre.Valor) == 0) //(valor == padre.valor)//Encontro el elemento a eliminar
             {
                 NodoBorrar = padre;
                 Node<T> aux = new Node<T>();
