@@ -3,8 +3,8 @@
     ViewData["Title"] = "Vehiculos";
 }
 
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="text-center bg-light"><h1 class="display-4">Arbol ABB</h1></div>
 <h1>Crear Cliente</h1>
 <p>
     <a asp-action="Create">Nuevo Cliente</a>
@@ -86,15 +86,10 @@
         }
     </tbody>
 </table>
-
-
-
-@if (null != TempData["TCarga"])
-{
-    <script type="text/javascript">
-        alert('@TempData["TCarga"]');
-    </script>
-}
+<hr/>
+<div>
+    <a onclick="history.go(-1)" class="link-primary">Regresar</a>
+</div>
 
 
 @if (null != TempData["TComp"])
@@ -127,5 +122,16 @@
             '@TempData["TComp3"]',
             'success'
         );
+    </script>
+}
+
+@if (null != TempData["TCarga"])
+{
+    <script type="text/javascript">
+        Swal.fire({
+            title: 'Tiempo de carga',
+            text: '@TempData["TCarga"]',
+            icon: 'success'
+        });
     </script>
 }
