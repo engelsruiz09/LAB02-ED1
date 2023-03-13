@@ -4,7 +4,7 @@
 }
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+<div class="text-center bg-light"><h1 class="display-4">Arbol AVL</h1></div>
 <h1>Crear Cliente</h1>
 <p>
     <a asp-action="Create2">Nuevo Cliente</a>
@@ -86,7 +86,9 @@
         }
     </tbody>
 </table>
-
+<div>
+    <a onclick="history.go(-1)" class="link-primary">Regresar</a>
+</div>
 
 
 @if (null != TempData["TComp"])
