@@ -153,7 +153,9 @@ namespace LAB02_ED1_G.Controllers
                 Singleton.Instance.flag = 1;
                 Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.Obtener(a => a.Email == BuscCorreo);
                 int a = Singleton.Instance.ArbolVehiculos.GetComparaciones();
+                int profundidad = Singleton.Instance.ArbolVehiculos.ObtenerProfundidad();
                 TempData["TComp3"] = "Se realizaron: " + Convert.ToString(a) + " comparaciones.";
+                TempData["Deep"] = "La profundidad del arbol es: " + Convert.ToString(profundidad);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -222,6 +224,8 @@ namespace LAB02_ED1_G.Controllers
                 timer.Stop();
                 TimeSpan time = timer.Elapsed;
                 TempData["TCarga"] = "Tiempo de carga: " + Convert.ToString(time);
+                int profundidad = Singleton.Instance.ArbolVehiculos.ObtenerProfundidad();
+                TempData["Deep"] = "La profundidad del arbol es: " + Convert.ToString(profundidad);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -235,9 +239,14 @@ namespace LAB02_ED1_G.Controllers
         {
             try
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 Singleton.Instance.flag = 1;
                 Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.ObtenerLista();
                 Singleton.Instance.Aux.Sort(new PropietarioID());
+                timer.Stop();
+                TimeSpan time = timer.Elapsed;
+                TempData["TSortDpiABB"] = "Tiempo de ordenamiento: " + Convert.ToString(time);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -252,11 +261,16 @@ namespace LAB02_ED1_G.Controllers
         {
             try
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 Singleton.Instance.flag = 1;
                 Singleton.Instance.Aux = Singleton.Instance.ArbolVehiculos.ObtenerLista();
                 Singleton.Instance.Aux.Sort(new VehiculoID());
                 /*var cmp = Singleton.Instance.ArbolVehiculos.ObtenerLista();
                 cmp.Sort();*/
+                timer.Stop();
+                TimeSpan time = timer.Elapsed;
+                TempData["TSortSNABB"] = "Tiempo de ordenamiento: " + Convert.ToString(time);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -271,9 +285,14 @@ namespace LAB02_ED1_G.Controllers
         {
             try
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 Singleton.Instance.flag = 1;
                 var cmp = Singleton.Instance.ArbolVehiculos.ObtenerLista();
                 cmp.Sort(new PropietarioEmail());
+                timer.Stop();
+                TimeSpan time = timer.Elapsed;
+                TempData["TSortEmailABB"] = "Tiempo de ordenamiento: " + Convert.ToString(time);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)

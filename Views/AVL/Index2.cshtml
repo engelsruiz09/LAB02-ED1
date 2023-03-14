@@ -95,7 +95,7 @@
 {
     <script type="text/javascript">
         Swal.fire(
-            'Tiempo de Comparaciones de DPI',
+            'Tiempo de Comparaciones de de buqueda DPI',
             '@TempData["TComp"]',
             'success'
         );
@@ -106,7 +106,7 @@
 {
     <script type="text/javascript">
         Swal.fire(
-            'Tiempo de Comparaciones de Número de Serie',
+            'Tiempo de Comparaciones de de buqueda Número de Serie',
             '@TempData["TComp2"]',
             'success'
         );
@@ -117,7 +117,7 @@
 {
     <script type="text/javascript">
         Swal.fire(
-            'Tiempo de Comparaciones de Correo',
+            'Tiempo de Comparaciones de buqueda de Correo',
             '@TempData["TComp3"]',
             'success'
         );
@@ -127,18 +127,52 @@
 @if (null != TempData["TRot"] && null != TempData["TCargaAVL"])
 {
     <script type="text/javascript">
-        Swal.fire(
-            'Rotaciones de carga AVL',
-            '@TempData["TRot"]',
-            'success'
-        ).then((result) => {
-            if (result.isConfirmed) {
+        Swal.fire({
+            title: 'Rotaciones de carga AVL',
+            text: '@TempData["TRot"]',
+            icon: 'success'
+        }).then(() => {
+            Swal.fire({
+                title: 'Tiempo de carga',
+                text: '@TempData["TCargaAVL"]',
+                icon: 'success'
+            }).then(() => {
                 Swal.fire({
-                    title: 'Tiempo de carga',
-                    text: '@TempData["TCargaAVL"]',
+                    title: 'Profundidad de Arbol',
+                    text: '@TempData["Deep"]',
                     icon: 'success'
-                });
-            }
-        });
+                })
+            })
+        })
+    </script>
+}
+@if (null != TempData["TSortDpi"])
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Tiempo de Comparaciones de ordenamiento de DPI',
+            '@TempData["TSortDpi"]',
+            'success'
+        );
+    </script>
+}
+@if (null != TempData["TSortSN"])
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Tiempo de Comparaciones de ordenamiento de Numero de Serie',
+            '@TempData["TSortSN"]',
+            'success'
+        );
+    </script>
+}
+@if (null != TempData["TSortEmail"])
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Tiempo de Comparaciones de ordenamiento de Correo',
+            '@TempData["TSortEmail"]',
+            'success'
+        );
     </script>
 }

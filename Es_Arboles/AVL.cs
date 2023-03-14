@@ -340,5 +340,24 @@ namespace Es_Arboles
         {
             Node<T> aux = Raiz;
         }
+        public int ObtenerProfundidad()
+        {
+            return ObtenerAltura(Raiz);
+        }
+
+        private int ObtenerAltura(Node<T> nodo)
+        {
+            if (nodo == null)
+            {
+                return -1;
+            }
+            else
+            {
+                int izquierda = ObtenerAltura(nodo.Izquierdo);
+                int derecha = ObtenerAltura(nodo.Derecho);
+                return Math.Max(izquierda, derecha) + 1;
+            }
+        }
     }
+
 }

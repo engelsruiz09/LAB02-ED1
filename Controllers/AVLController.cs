@@ -220,7 +220,9 @@ namespace LAB02_ED1_G.Controllers
                 TimeSpan time = timer.Elapsed;
                 TempData["TCargaAVL"] = "Tiempo de carga: " + Convert.ToString(time);
                 int b = Singleton.Instance.AVL.GetRotacion();
+                int profundidad = Singleton.Instance.AVL.ObtenerProfundidad();
                 TempData["TRot"] = "Existieron: " + Convert.ToString(b) + " rotaciones.";
+                TempData["Deep"] = "La profundidad del arbol es: "+ Convert.ToString(profundidad) ;
                 return RedirectToAction(nameof(Index2));
             }
             catch (Exception)
@@ -234,9 +236,14 @@ namespace LAB02_ED1_G.Controllers
         {
             try
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 Singleton.Instance.flag = 1;
                 Singleton.Instance.Aux = Singleton.Instance.AVL.ObtenerLista();
                 Singleton.Instance.Aux.Sort(new PropietarioID());
+                timer.Stop();
+                TimeSpan time = timer.Elapsed;
+                TempData["TSortDpi"] = "Tiempo de ordenamiento: " + Convert.ToString(time);
                 return RedirectToAction(nameof(Index2));
             }
             catch (Exception)
@@ -251,11 +258,18 @@ namespace LAB02_ED1_G.Controllers
 		{
             try
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 Singleton.Instance.flag = 1;
                 Singleton.Instance.Aux = Singleton.Instance.AVL.ObtenerLista();
                 Singleton.Instance.Aux.Sort(new VehiculoID());
                 /*var cmp = Singleton.Instance.AVL.ObtenerLista();
                 cmp.Sort();*/
+                timer.Stop();
+                TimeSpan time = timer.Elapsed;
+
+                TempData["TSortSN"] = "Tiempo de ordenamiento: " + Convert.ToString(time);
+
                 return RedirectToAction(nameof(Index2));
             }
             catch (Exception)
@@ -270,9 +284,14 @@ namespace LAB02_ED1_G.Controllers
 		{
             try
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 Singleton.Instance.flag = 1;
                 var cmp = Singleton.Instance.AVL.ObtenerLista();
                 cmp.Sort(new PropietarioEmail());
+                timer.Stop();
+                TimeSpan time = timer.Elapsed;
+                TempData["TSortEmail"] = "Tiempo de ordenamiento: " + Convert.ToString(time);
                 return RedirectToAction(nameof(Index2));
             }
             catch (Exception)

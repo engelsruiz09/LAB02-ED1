@@ -237,5 +237,32 @@ namespace Es_Arboles
         {
             return comparaciones;
         }
+        public int ObtenerProfundidad()
+        {
+            return ObtenerProfundidad(Raiz, 0, 0);
+        }
+
+        private int ObtenerProfundidad(Node<T> nodo, int profundidadActual, int profundidadMaxima)
+        {
+            if (nodo.Valor == null)
+            {
+                return profundidadMaxima;
+            }
+
+            // Incrementar la profundidad actual
+            profundidadActual++;
+
+            // Actualizar la profundidad máxima si la actual es mayor
+            if (profundidadActual > profundidadMaxima)
+            {
+                profundidadMaxima = profundidadActual;
+            }
+
+            // Recorrer los nodos hijos
+            profundidadMaxima = ObtenerProfundidad(nodo.Izquierdo, profundidadActual, profundidadMaxima);
+            profundidadMaxima = ObtenerProfundidad(nodo.Derecho, profundidadActual, profundidadMaxima);
+
+            return profundidadMaxima;
+        }
     }
 }

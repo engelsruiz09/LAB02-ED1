@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sMIhpsNWhcZK/f1/bwZw3EnTtbSlRNUc/t+3TxciwFQ=",
+  "Hash": "jCZ1fxn3yOLHQIrDDwrpPsu9v8wBbmAJl2cEC+QTXRI=",
   "Source": "LAB02-ED1-G",
   "BasePath": "_content/LAB02-ED1-G",
   "Mode": "Default",
@@ -1239,6 +1239,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "E:\\Carlos\\source\\repos\\Estructura de Datos I\\LAB02-ED1\\wwwroot\\Uploads\\02 - Árboles AVL.pdf",
+      "SourceId": "LAB02-ED1-G",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Carlos\\source\\repos\\Estructura de Datos I\\LAB02-ED1\\wwwroot\\",
+      "BasePath": "_content/LAB02-ED1-G",
+      "RelativePath": "Uploads/02 - Árboles AVL.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\02 - Árboles AVL.pdf"
     },
     {
       "Identity": "E:\\Carlos\\source\\repos\\Estructura de Datos I\\LAB02-ED1\\wwwroot\\Uploads\\Laboratorio 2 - Datos de Ejemplo (1).csv",
