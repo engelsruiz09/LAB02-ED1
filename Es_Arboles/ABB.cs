@@ -104,19 +104,6 @@ namespace Es_Arboles
                 throw;
             }
         }
-        public int ObtenerFE(Node<T> n)
-        {
-
-            if (n == null)
-            {
-                return -1;
-            }
-            else
-            {
-                return n.FE;
-            }
-
-        }
         protected override void Delete(Node<T> nodo)
         {
             if (nodo.Izquierdo.Valor == null && nodo.Derecho.Valor == null) // Caso 1
